@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E-TECH HUB — Portfolio</title>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <style>
+    :root{
+      --bg:#0a0f1f;
+      --bg-2:#0d1326;
+      --text:#e6f1ff;
+      --muted:#9fb3c8;
+      --neon:#00e5ff;
+      --neon-2:#7cffb2;
+      --accent:#ff3d7f;
+      --glass:rgba(255,255,255,0.06);
+      --border:rgba(255,255,255,0.12);
+      --shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 10% 10%, #0c1633 0%, var(--bg) 50%, #050914 100%); color:var(--text); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; scroll-behavior:smooth}
+    a{color:var(--neon); text-decoration:none}
+    img{max-width:100%; display:block}
+
+  
+    .grid-bg{
+      position:fixed; inset:0; pointer-events:none; z-index:-1;
+      background-image:
+        radial-gradient(circle at 20% 10%, rgba(0,229,255,0.15) 0, transparent 40%),
+        radial-gradient(circle at 80% 90%, rgba(255,61,127,0.12) 0, transparent 45%),
+        linear-gradient(transparent 98%, rgba(124,255,178,0.15) 100%),
+        linear-gradient(90deg, transparent 98%, rgba(0,229,255,0.15) 100%);
+      background-size: 100% 40px, 100% 40px, 40px 40px, 40px 40px;
+      mix-blend-mode: screen;
+      opacity:.6;
+    }
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, rgba(10,15,31,0.85), rgba(10,15,31,0.55));
+      border-bottom:1px solid var(--border);
+    }
+    .logohead{
+      border-radius: 80px;
+    }
+    .nav{
+      max-width:1100px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; gap:18px; justify-content:space-between;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.5px;
+    }
+    .logo{
+      width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg, var(--neon), var(--accent));
+      box-shadow:0 0 18px rgba(0,229,255,0.6), 0 0 28px rgba(255,61,127,0.35);
+      position:relative; overflow:hidden;
+    }
+    .logo::after{
+      content:""; position:absolute; inset:2px; border-radius:8px; background:rgba(0,0,0,0.25);
+    }
+    .brand span{font-size:1.05rem}
+    .nav-links{display:flex; gap:18px; flex-wrap:wrap}
+    .nav-links a{padding:8px 12px; border-radius:8px; color:var(--text)}
+    .nav-links a:hover{background:var(--glass); box-shadow:inset 0 0 0 1px var(--border)}
+
+    .hero{
+      max-width:1100px; margin:0 auto; padding:60px 20px 30px;
+      display:grid; grid-template-columns:1.2fr .8fr; gap:28px;
+    }
+    .hero h1{
+      font-size:clamp(1.8rem, 3.2vw, 3rem); margin:0 0 10px; line-height:1.1;
+    }
+    .hero p{color:var(--muted); margin:0 0 18px}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      padding:10px 16px; border-radius:10px; border:1px solid var(--border); background:var(--glass); color:var(--text);
+      box-shadow:var(--shadow); transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(0,229,255,0.15), rgba(124,255,178,0.12));
+      border-color:rgba(0,229,255,0.35);
+    }
+    .btn:hover{transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,229,255,0.15)}
+
+  
+    .glass-card{
+      position:relative; border:1px solid var(--border); border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      backdrop-filter:blur(12px) saturate(140%); box-shadow:var(--shadow); overflow:hidden;
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .glass-card:hover{transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,229,255,0.18)}
+    .about{
+      display:grid; grid-template-columns:.9fr 1.1fr; gap:0; min-height:320px;
+    }
+    .about .photo{
+      position:relative; padding:18px; display:flex; align-items:center; justify-content:center;
+      background:radial-gradient(600px 300px at 50% 0%, rgba(0,229,255,0.12), transparent 60%);
+      border-right:1px solid var(--border);
+    }
+    .avatar{
+      width:180px; height:180px; border-radius:16px; object-fit:cover; border:1px solid rgba(255,255,255,0.2);
+      box-shadow:0 0 24px rgba(0,229,255,0.25);
+    }
+    .about .content{padding:22px}
+    .about h3{margin:0 0 8px; font-size:1.2rem}
+    .about p{color:var(--muted); margin:0 0 12px}
+    .tags{display:flex; gap:10px; flex-wrap:wrap}
+    .tag{
+      font-family:Space Mono, monospace; font-size:.85rem; padding:6px 10px; border-radius:999px; border:1px dashed rgba(0,229,255,0.35);
+      background:rgba(0,229,255,0.08); color:var(--text);
+    }
+
+    section{max-width:1100px; margin:0 auto; padding:40px 20px}
+    .section-title{
+      display:flex; align-items:center; gap:10px; margin-bottom:18px; font-weight:800; letter-spacing:.4px;
+    }
+    .section-title .bar{
+      width:18px; height:18px; border-radius:4px; background:linear-gradient(135deg, var(--neon), var(--neon-2));
+      box-shadow:0 0 12px rgba(0,229,255,0.6);
+    }
+    .section-sub{color:var(--muted); margin-top:-6px; margin-bottom:16px}
+
+    .carousel-wrap{position:relative}
+    .carousel{
+      display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px;
+      scrollbar-width:thin; scrollbar-color: var(--neon) transparent;
+    }
+    .carousel::-webkit-scrollbar{height:8px}
+    .carousel::-webkit-scrollbar-thumb{background:linear-gradient(135deg, var(--neon), var(--accent)); border-radius:999px}
+    .card{
+      min-width:280px; max-width:320px; scroll-snap-align:start;
+      border:1px solid var(--border); border-radius:14px; background:var(--glass); backdrop-filter:blur(8px);
+      box-shadow:var(--shadow); overflow:hidden; position:relative; transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover{transform:translateY(-4px); box-shadow:0 18px 40px rgba(255,61,127,0.18)}
+    .card-media{height:160px; background:#0b1228; position:relative; overflow:hidden}
+    .card-media img, .card-media video{width:100%; height:100%; object-fit:cover}
+    .card-body{padding:14px}
+    .card-title{font-weight:700; margin:0 0 6px}
+    .card-meta{color:var(--muted); font-size:.9rem}
+    .arrow{
+      position:absolute; top:50%; right:-6px; transform:translateY(-50%);
+      width:42px; height:42px; border-radius:999px; border:1px solid var(--border);
+      background:linear-gradient(135deg, rgba(0,229,255,0.15), rgba(255,61,127,0.12));
+      display:grid; place-items:center; cursor:pointer; box-shadow:var(--shadow);
+    }
+    .arrow:hover{filter:brightness(1.2)}
+    .arrow svg{width:20px; height:20px; fill:var(--text)}
+
+    .skills-grid{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
+    }
+    .skill{
+      border:1px solid var(--border); border-radius:12px; background:var(--glass); padding:14px;
+    }
+    .skill h4{margin:0 0 8px; font-size:1rem}
+    .meter{
+      height:8px; border-radius:999px; background:#0b1228; overflow:hidden; border:1px solid var(--border)
+    }
+    .meter span{
+      display:block; height:100%; background:linear-gradient(90deg, var(--neon), var(--accent));
+      box-shadow:0 0 12px rgba(0,229,255,0.5);
+    }
+
+    
+    pre{
+      background:#0b1228; color:#d6eaff; padding:16px; border-radius:12px; border:1px solid var(--border);
+      overflow:auto; font-family:Space Mono, monospace; font-size:.9rem;
+    }
+    code .k{color:#7cffb2} /* keyword */
+    code .s{color:#00e5ff} /* string */
+    code .c{color:#9fb3c8} /* comment */
+
+    .contact{
+      display:grid; grid-template-columns:1fr 1fr; gap:18px;
+    }
+    .contact .info{
+      border:1px solid var(--border); border-radius:12px; background:var(--glass); padding:16px;
+    }
+    form{
+      border:1px solid var(--border); border-radius:12px; background:var(--glass); padding:16px;
+    }
+    label{display:block; font-weight:600; margin:8px 0 6px}
+    input, textarea{
+      width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#0b1228; color:var(--text)
+    }
+    textarea{min-height:120px; resize:vertical}
+    .form-actions{display:flex; gap:10px; align-items:center; margin-top:10px}
+    .status{color:var(--muted); font-size:.9rem}
+
+    
+    footer{
+      border-top:1px solid var(--border); padding:20px; text-align:center; color:var(--muted)
+    }
+
+    
+    .breach-strip{
+      position:relative; margin:24px 0; border-radius:12px; overflow:hidden; border:1px dashed rgba(255,61,127,0.35);
+      background:linear-gradient(90deg, rgba(255,61,127,0.08), rgba(0,229,255,0.08));
+    }
+    .breach-strip .content{padding:12px 14px; display:flex; align-items:center; gap:12px}
+    .lock{
+      width:22px; height:22px; filter:drop-shadow(0 0 8px rgba(0,229,255,0.6));
+    }
+    .glitch{
+      position:absolute; inset:0; background-image:repeating-linear-gradient(180deg, rgba(255,61,127,0.12) 0 2px, transparent 2px 4px);
+      mix-blend-mode:screen; opacity:.25; animation:scan 6s linear infinite;
+    }
+    @keyframes scan{0%{transform:translateY(-100%)} 100%{transform:translateY(100%)}}
+
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr; padding-top:40px}
+      .about{grid-template-columns:1fr}
+      .skills-grid{grid-template-columns:repeat(2,1fr)}
+      .contact{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      .nav{padding:12px 14px}
+      .nav-links{display:none}
+      .card{min-width:240px}
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <!-- Header -->
+  <header>
+    <nav class="nav">
+      <div class="brand">
+        <Img src="NEW.jpg" width="100" height="70" class="logohead">
+        <span>E-TECH HUB</span>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#code">Code</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Undergraduate Cyber Security Expert • Front‑End Developer • Graphic Designer • Video Editor </h1>
+      <p>I build secure, beautiful, and performant digital experiences—bridging defense‑grade security with bold visual storytelling and clean, responsive code.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">View Projects</a>
+        <a class="btn" href="#contact">Hire Me</a>
+      </div>
+
+      <div class="breach-strip">
+        <div class="glitch"></div>
+        <div class="content">
+          <!-- Lock icon (inline SVG) -->
+          <svg class="lock" viewBox="0 0 24 24" fill="none">
+            <path d="M7 10V8a5 5 0 1 1 10 0v2" stroke="#00e5ff" stroke-width="2"/>
+            <rect x="5" y="10" width="14" height="10" rx="2" stroke="#7cffb2" stroke-width="2"/>
+            <circle cx="12" cy="15" r="2" fill="#ff3d7f"/>
+          </svg>
+          <strong>Security‑first builds:</strong>
+          <span class="section-sub">Threat‑modeling, secure auth flows, and breach‑resistant front‑ends.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- About glass card -->
+    <div id="about" class="glass-card about">
+      <div class="photo">
+        <img class="avatar" src="profile.PNG" />
+      </div>
+      <div class="content">
+        <h3>About me</h3>
+        <p><b>EPHRAIM MAHAMMED</b>,(E-TECH)</p>
+        <p>I’m a multi‑disciplinary Tech Savvy Individual. I secure systems and perimeters, design striking visuals, edit compelling stories, and craft accessible, responsive interfaces. I care about clarity, performance, and trust.</p>
+        <div class="tags">
+          <span class="tag">CyberSecurity </span>
+          <span class="tag">Frontend Developer</span>
+          <span class="tag">Graphic Designer</span>
+          <span class="tag">Video Editor</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="section-title"><div class="bar"></div> Projects</div>
+    <p class="section-sub">NO PROJECT OOH THINGS HARD - CHECK AGAIN NEXT YEAR</p>
+
+    <div class="carousel-wrap">
+      <div class="carousel" id="carousel">
+       
+        <article class="card">
+          <div class="card-media">
+            <img src="" />
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">YOU NEVER EMPLOY ME HOW I WAN GET PROJECT </h4>
+            <p class="card-meta">THINGS HARD OOH HIRE ME MAKE I GET PROJECT</p>
+          </div>
+        </article>
+
+      </div>
+
+ 
+      <button class="arrow" id="arrow" aria-label="Next">
+        <svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7" /></svg>
+      </button>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-title"><div class="bar"></div> Skills</div>
+    <p class="section-sub">Core capabilities across security, design, editing, and front‑end engineering.</p>
+
+    <div class="skills-grid">
+      <div class="skill">
+        <h4>Cyber Security</h4>
+        <div class="meter"><span style="width:20%"></span></div>
+        <p></p>
+        <p class="section-sub"> perimeter Security, Incident respond plan (undergoing training to gain more cyber security skills)</p>
+      </div>
+       <div class="skill">
+        <h4>Front‑End Dev</h4>
+        <div class="meter"><span style="width:90%"></span></div>
+        <p></p>
+        <p class="section-sub">HTML and CSS, Javascript</p>
+      </div>
+      <div class="skill">
+        <h4>Graphic Design</h4>
+        <div class="meter"><span style="width:100%"></span></div>
+        <p></p>
+        <p class="section-sub">Brand systems designs, Flyers, Banners, Logo Design, social media designs etc...</p>
+      </div>
+      <div class="skill">
+        <h4>Video Editing</h4>
+        <div class="meter"><span style="width:70%"></span></div>
+        <p></p>
+        <p class="section-sub">Events covering, short clips and reels, motion Graphics, social media videos.</p>
+      </div>
+     
+    </div>
+  </section>
+
+
+  <section id="code">
+    <div class="section-title"><div class="bar"></div> Code snippets</div>
+    <p class="section-sub">Clean, readable, and friendly accessible front‑end patterns.</p>
+
+    <pre><code><span class="c">// Accessible button with keyboard focus and GSAP micro-interaction</span>
+<span class="k">const</span> btn <span class="k">=</span> document.querySelector(<span class="s">'.btn.primary'</span>);
+btn.addEventListener(<span class="s">'mouseenter'</span>, () <span class="k">=&gt;</span> gsap.to(btn, { y: -2, duration: 0.2 }));
+btn.addEventListener(<span class="s">'mouseleave'</span>, () <span class="k">=&gt;</span> gsap.to(btn, { y: 0, duration: 0.2 }));
+btn.addEventListener(<span class="s">'focus'</span>, () <span class="k">=&gt;</span> gsap.to(btn, { boxShadow: <span class="s">'0 0 0 3px rgba(0,229,255,0.35)'</span>, duration: 0.2 }));
+btn.addEventListener(<span class="s">'blur'</span>, () <span class="k">=&gt;</span> gsap.to(btn, { boxShadow: <span class="s">'0 10px 30px rgba(0,0,0,0.35)'</span>, duration: 0.2 }));</code></pre>
+  </section>
+
+  <section id="contact">
+    <div class="section-title"><div class="bar"></div> Contact</div>
+    <p class="section-sub">Let’s build something secure, fast, and unforgettable.</p>
+
+    <div class="contact">
+      <div class="info">
+        <p><strong>Email:</strong> Mephraim606@gmail.com</p>
+        <p><strong>Whatsapp:</strong> +234 8119110046</p>
+        <p><strong>Location:</strong> Osara, kogi State Nigeria</p>
+        <p><strong>Availability:</strong> Freelance & contract (open to remote jobs)</p>
+        <p><strong>Social:</strong> <a href="#" aria-label="LinkedIn">LinkedIn</a></a></p>
+      </div>
+
+      <form id="contactForm" novalidate>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" placeholder="Enter name" required />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Send message</button>
+          <span class="status" id="status">I usually reply within 24 hours if i get data sha.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> E‑TECH HUB · Built with care, secured by design.
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Carousel arrow scroll
+    const carousel = document.getElementById('carousel');
+    const arrow = document.getElementById('arrow');
+    arrow.addEventListener('click', () => {
+      carousel.scrollBy({ left: 340, behavior: 'smooth' });
+    });
+
+    // Auto-play video on hover (video editor dynamic thumbnails)
+    document.querySelectorAll('.card video').forEach(v => {
+      v.addEventListener('mouseenter', () => { v.muted = true; v.play().catch(()=>{}); });
+      v.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
+      // Tap to play on mobile
+      v.addEventListener('click', () => { if (v.paused) v.play().catch(()=>{}); else v.pause(); });
+    });
+
+    // GSAP animations
+    window.addEventListener('load', () => {
+      gsap.set('header', { y: -40, opacity: 0 });
+      gsap.to('header', { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' });
+
+      gsap.from('.hero h1', { y: 20, opacity: 0, duration: 0.6, delay: 0.1 });
+      gsap.from('.cta .btn', { y: 20, opacity: 0, duration: 0.6, delay: 0.2, stagger: 0.08 });
+
+      gsap.from('.about', { y: 30, opacity: 0, duration: 0.7, delay: 0.15 });
+
+      // Scroll-triggered reveals
+      gsap.utils.toArray('section').forEach(sec => {
+        gsap.from(sec.querySelector('.section-title'), {
+          scrollTrigger: { trigger: sec, start: 'top 80%' },
+          y: 16, opacity: 0, duration: 0.5
+        });
+      });
+
+      gsap.utils.toArray('.card').forEach((card, i) => {
+        gsap.from(card, {
+          scrollTrigger: { trigger: card, start: 'top 85%' },
+          y: 24, opacity: 0, duration: 0.5, delay: i * 0.03
+        });
+      });
+
+      gsap.utils.toArray('.skill').forEach((el) => {
+        gsap.from(el, {
+          scrollTrigger: { trigger: el, start: 'top 85%' },
+          y: 18, opacity: 0, duration: 0.45
+        });
+      });
+    });
+
+    // Contact form (demo handler)
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('status');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim()
+      };
+      if (!data.name || !data.email || !data.message) {
+        status.textContent = 'Please fill in all fields.';
+        status.style.color = '#ff3d7f';
+        return;
+      }
+      status.textContent = 'Sending...';
+      status.style.color = '#9fb3c8';
+
+      // Simulate async send; replace with your endpoint
+      await new Promise(r => setTimeout(r, 900));
+      status.textContent = 'Message sent! I’ll get back to you soon.';
+      status.style.color = '#7cffb2';
+      form.reset();
+    });
+
+    // Accessibility: keyboard scroll for carousel
+    carousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') carousel.scrollBy({ left: 320, behavior: 'smooth' });
+      if (e.key === 'ArrowLeft') carousel.scrollBy({ left: -320, behavior: 'smooth' });
+    });
+    carousel.setAttribute('tabindex', '0');
+  </script>
+</body>
+</html>
