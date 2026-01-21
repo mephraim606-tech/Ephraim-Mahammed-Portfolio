@@ -123,8 +123,7 @@
       display:flex; align-items:center; gap:10px; margin-bottom:18px; font-weight:800; letter-spacing:.4px;
     }
     .section-title .bar{
-      width:18px; height:18px; border-radius:4px; background:linear-gradient(135deg, var(--neon), var(--neon-2));
-      box-shadow:0 0 12px rgba(0,229,255,0.6);
+      width:18px; height:18px; border-radius:4px; background:rgb(10, 141, 180);;
     }
     .section-sub{color:var(--muted); margin-top:-6px; margin-bottom:16px}
 
@@ -166,8 +165,7 @@
       height:8px; border-radius:999px; background:#0b1228; overflow:hidden; border:1px solid var(--border)
     }
     .meter span{
-      display:block; height:100%; background:linear-gradient(90deg, var(--neon), var(--accent));
-      box-shadow:0 0 12px rgba(0,229,255,0.5);
+      display:block; height:100%; background:rgb(10, 141, 180);;
     }
 
     
@@ -227,23 +225,22 @@
       .nav-links{display:none}
       .card{min-width:240px}
     }
-  </style>
+
+</style>
 </head>
 <body>
   <div class="grid-bg"></div>
 
-  <!-- Header -->
   <header>
     <nav class="nav">
       <div class="brand">
         <Img src="NEW.jpg" width="100" height="70" class="logohead">
-        <span>E-TECH HUB</span>
+        <span>EPHRAIM MAHAMMED (E-TECH)</span>
       </div>
       <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
-        <a href="#code">Code</a>
+        <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -251,35 +248,28 @@
 
   <section class="hero">
     <div>
-      <h1>Undergraduate Cyber Security Expert • Front‑End Developer • Graphic Designer • Video Editor </h1>
+      <h1>Undergraduate Cyber Security Expert • Front‑End & Python Developer • Graphic Designer • Video Editor </h1>
       <p>I build secure, beautiful, and performant digital experiences—bridging defense‑grade security with bold visual storytelling and clean, responsive code.</p>
       <div class="cta">
         <a class="btn primary" href="#projects">View Projects</a>
-        <a class="btn" href="#contact">Hire Me</a>
       </div>
 
       <div class="breach-strip">
         <div class="glitch"></div>
         <div class="content">
-          <!-- Lock icon (inline SVG) -->
-          <svg class="lock" viewBox="0 0 24 24" fill="none">
-            <path d="M7 10V8a5 5 0 1 1 10 0v2" stroke="#00e5ff" stroke-width="2"/>
-            <rect x="5" y="10" width="14" height="10" rx="2" stroke="#7cffb2" stroke-width="2"/>
-            <circle cx="12" cy="15" r="2" fill="#ff3d7f"/>
-          </svg>
-          <strong>Security‑first builds:</strong>
-          <span class="section-sub">Threat‑modeling, secure auth flows, and breach‑resistant front‑ends.</span>
+          <strong>EDUCATION:</strong>
+          <span class="section-sub">BSc CYBER SECURITY - Confluence Univerisity Of Science and Technology (CUSTECH), Osara Kogi State
+        <p>2023 - ongoing (Expected date of graduation- 2027)</p></span>
         </div>
       </div>
     </div>
 
-    <!-- About glass card -->
     <div id="about" class="glass-card about">
       <div class="photo">
         <img class="avatar" src="profile.PNG" />
       </div>
       <div class="content">
-        <h3>About me</h3>
+        <h3><strong>ABOUT ME</strong></h3>
         <p><b>EPHRAIM MAHAMMED</b>,(E-TECH)</p>
         <p>I’m a multi‑disciplinary Tech Savvy Individual. I secure systems and perimeters, design striking visuals, edit compelling stories, and craft accessible, responsive interfaces. I care about clarity, performance, and trust.</p>
         <div class="tags">
@@ -292,21 +282,71 @@
     </div>
   </section>
 
-  <!-- Projects -->
+   <section id="skills">
+    <div class="section-title"><div class="bar"></div> Skills</div>
+    <p class="section-sub">Core capabilities across security,front‑end engineering, Python Programming, design, and editing.</p>
+
+    <div class="skills-grid">
+      <div class="skill">
+        <h4>Cyber Security</h4>
+        <div class="meter"><span style="width:20%"></span></div>
+        <p></p>
+        <p class="section-sub"> perimeter Security, Incident respond plan (undergoing training to gain more cyber security skills)</p>
+      </div>
+       <div class="skill">
+        <h4>Front‑End & Python Dev</h4>
+        <div class="meter"><span style="width:90%"></span></div>
+        <p></p>
+        <p class="section-sub">HTML and CSS, Javascript, Python Programming </p>
+      </div>
+      <div class="skill">
+        <h4>Graphic Design</h4>
+        <div class="meter"><span style="width:100%"></span></div>
+        <p></p>
+        <p class="section-sub">Adobe Photoshop, Illustator, CorelDraw, Canva</p>
+      </div>
+      <div class="skill">
+        <h4>Video Editing</h4>
+        <div class="meter"><span style="width:90%"></span></div>
+        <p></p>
+        <p class="section-sub">Capcut, Adobe AfterEffect</p>
+      </div>
+       <div class="skill">
+        <h4>Soft Skills</h4>
+        <div class="meter"><span style="width:100%"></span></div>
+        <p></p>
+        <p class="section-sub">Remote Collaboration, Problem Solving, Creativity, Time Management, Cross-Team Communication, Adaptability</p>
+      </div>
+     
+     
+    </div>
+  </section>
+
+
   <section id="projects">
     <div class="section-title"><div class="bar"></div> Projects</div>
-    <p class="section-sub">NO PROJECT OOH THINGS HARD - CHECK AGAIN NEXT YEAR</p>
+    <p class="section-sub">CHECK OUT AMAZING AND OUTSTANDING PROJECTS/WORKS DONE BY ME </p>
 
     <div class="carousel-wrap">
-      <div class="carousel" id="carousel">
-       
+      <div class="carousel" id="carousel">      
         <article class="card">
+          <div class="card-media">
+            <img src="project1.png" width="20px" height="560px" />
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">EMBEDDED MINI-CYBER SECURITY CHAT AI ON MY Portfolio </h4>
+            <p class="card-meta">Developed a Mini-Cyber Security Chat AI Embedded to my Portfolio website to answer to questions about me and 
+              about CyberSecurity. check it out.
+            </p>
+          </div>
+        </article>
+         <article class="card">
           <div class="card-media">
             <img src="" />
           </div>
           <div class="card-body">
-            <h4 class="card-title">YOU NEVER EMPLOY ME HOW I WAN GET PROJECT </h4>
-            <p class="card-meta">THINGS HARD OOH HIRE ME MAKE I GET PROJECT</p>
+            <h4 class="card-title">Still Working, Check Back later </h4>
+            <p class="card-meta">...........................</p>
           </div>
         </article>
 
@@ -319,52 +359,6 @@
     </div>
   </section>
 
-  <section id="skills">
-    <div class="section-title"><div class="bar"></div> Skills</div>
-    <p class="section-sub">Core capabilities across security, design, editing, and front‑end engineering.</p>
-
-    <div class="skills-grid">
-      <div class="skill">
-        <h4>Cyber Security</h4>
-        <div class="meter"><span style="width:20%"></span></div>
-        <p></p>
-        <p class="section-sub"> perimeter Security, Incident respond plan (undergoing training to gain more cyber security skills)</p>
-      </div>
-       <div class="skill">
-        <h4>Front‑End Dev</h4>
-        <div class="meter"><span style="width:90%"></span></div>
-        <p></p>
-        <p class="section-sub">HTML and CSS, Javascript</p>
-      </div>
-      <div class="skill">
-        <h4>Graphic Design</h4>
-        <div class="meter"><span style="width:100%"></span></div>
-        <p></p>
-        <p class="section-sub">Brand systems designs, Flyers, Banners, Logo Design, social media designs etc...</p>
-      </div>
-      <div class="skill">
-        <h4>Video Editing</h4>
-        <div class="meter"><span style="width:70%"></span></div>
-        <p></p>
-        <p class="section-sub">Events covering, short clips and reels, motion Graphics, social media videos.</p>
-      </div>
-     
-    </div>
-  </section>
-
-
-  <section id="code">
-    <div class="section-title"><div class="bar"></div> Code snippets</div>
-    <p class="section-sub">Clean, readable, and friendly accessible front‑end patterns.</p>
-
-    <pre><code><span class="c">// Accessible button with keyboard focus and GSAP micro-interaction</span>
-<span class="k">const</span> btn <span class="k">=</span> document.querySelector(<span class="s">'.btn.primary'</span>);
-btn.addEventListener(<span class="s">'mouseenter'</span>, () <span class="k">=&gt;</span> gsap.to(btn, { y: -2, duration: 0.2 }));
-btn.addEventListener(<span class="s">'mouseleave'</span>, () <span class="k">=&gt;</span> gsap.to(btn, { y: 0, duration: 0.2 }));
-btn.addEventListener(<span class="s">'focus'</span>, () <span class="k">=&gt;</span> gsap.to(btn, { boxShadow: <span class="s">'0 0 0 3px rgba(0,229,255,0.35)'</span>, duration: 0.2 }));
-btn.addEventListener(<span class="s">'blur'</span>, () <span class="k">=&gt;</span> gsap.to(btn, { boxShadow: <span class="s">'0 10px 30px rgba(0,0,0,0.35)'</span>, duration: 0.2 }));</code></pre>
-  </section>
-
   <section id="contact">
     <div class="section-title"><div class="bar"></div> Contact</div>
     <p class="section-sub">Let’s build something secure, fast, and unforgettable.</p>
@@ -372,27 +366,13 @@ btn.addEventListener(<span class="s">'blur'</span>, () <span class="k">=&gt;</sp
     <div class="contact">
       <div class="info">
         <p><strong>Email:</strong> Mephraim606@gmail.com</p>
-        <p><strong>Whatsapp:</strong> +234 8119110046</p>
+        <p><strong>Whatsapp:</strong> +234 8119110046 // +234 9160215766</p>
         <p><strong>Location:</strong> Osara, kogi State Nigeria</p>
         <p><strong>Availability:</strong> Freelance & contract (open to remote jobs)</p>
-        <p><strong>Social:</strong> <a href="#" aria-label="LinkedIn">LinkedIn</a></a></p>
+        <p><strong>Social:</strong> <a href="https://www.linkedin.com
+          /in/ephraim-mahammed-626864381?utm_source=share&utm_campaign
+          =share_vig&utm_content=profile" aria-label="LinkedIn">LinkedIn</a></a></p>
       </div>
-
-      <form id="contactForm" novalidate>
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" placeholder="Enter name" required />
-
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="you@example.com" required />
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
-
-        <div class="form-actions">
-          <button class="btn primary" type="submit">Send message</button>
-          <span class="status" id="status">I usually reply within 24 hours if i get data sha.</span>
-        </div>
-      </form>
     </div>
   </section>
 
@@ -483,6 +463,7 @@ btn.addEventListener(<span class="s">'blur'</span>, () <span class="k">=&gt;</sp
       if (e.key === 'ArrowLeft') carousel.scrollBy({ left: -320, behavior: 'smooth' });
     });
     carousel.setAttribute('tabindex', '0');
+
   </script>
 </body>
 </html>
